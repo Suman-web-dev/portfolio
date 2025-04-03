@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="kGwVDR4XzpmtxX6zjOGwPBHD5D4JYFhHHLgxJYG51mw" />
     <meta name="description" content="Your Name - Portfolio showcasing web development, projects, and skills.">
-<meta name="keywords" content="Portfolio, Web Developer, HTML, CSS, JavaScript, React">
-<meta name="author" content="Your Name">
-<meta name="robots" content="index, follow">
-
+    <meta name="keywords" content="Portfolio, Web Developer, HTML, CSS, JavaScript, React">
+    <meta name="author" content="Your Name">
+    <meta name="robots" content="index, follow">
 
     <title>Portfolio</title>
     <link
@@ -149,19 +148,22 @@
       /* Hero Section */
       .hero {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         position: relative;
         overflow: hidden;
+        text-align: center;
       }
 
       .hero-content {
-        max-width: 600px;
+        max-width: 800px;
+        margin-bottom: 3rem;
       }
 
       .hero h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
         line-height: 1.2;
         text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
@@ -191,7 +193,7 @@
       }
 
       .hero p {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         margin-bottom: 2rem;
         opacity: 0.8;
       }
@@ -237,41 +239,97 @@
         box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
       }
 
+      .hero-image-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 2rem auto;
+      }
+
       .hero-image {
-        width: 435px;
-        height: 449px;
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
         background: linear-gradient(45deg, var(--primary), var(--accent));
         animation: morph 8s ease-in-out infinite;
         position: relative;
         overflow: hidden;
         box-shadow: 0 20px 50px rgba(108, 92, 231, 0.3);
         transition: all 0.5s ease;
+        border: 5px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(30%) contrast(120%);
+        transition: all 0.5s ease;
       }
 
       .hero-image:hover {
         animation: morph 4s ease-in-out infinite, float 3s ease-in-out infinite;
+        box-shadow: 0 30px 60px rgba(108, 92, 231, 0.5);
+      }
+
+      .hero-image:hover img {
+        filter: grayscale(0%) contrast(100%);
+        transform: scale(1.05);
+      }
+
+      .floating-icons {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+      }
+
+      .floating-icon {
+        position: absolute;
+        color: var(--primary);
+        font-size: 1.5rem;
+        opacity: 0.7;
+        animation: floatAround 15s linear infinite;
       }
 
       @keyframes morph {
         0% {
-          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
         }
         50% {
-          border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+          border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
         }
         100% {
-          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
         }
       }
 
       @keyframes float {
-        0%,
-        100% {
+        0%, 100% {
           transform: translateY(0);
         }
         50% {
           transform: translateY(-20px);
+        }
+      }
+
+      @keyframes floatAround {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+          transform: translate(50px, 50px) rotate(90deg);
+        }
+        50% {
+          transform: translate(0, 100px) rotate(180deg);
+        }
+        75% {
+          transform: translate(-50px, 50px) rotate(270deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(360deg);
         }
       }
 
@@ -599,8 +657,8 @@
 
         .hero-image {
           margin-top: 3rem;
-          width: 300px;
-          height: 300px;
+          width: 250px;
+          height: 250px;
         }
 
         section {
@@ -623,12 +681,33 @@
           font-size: 2.5rem;
         }
 
+        .hero p {
+          font-size: 1.2rem;
+        }
+
         .section-title {
           font-size: 2rem;
         }
       }
-      img{
-        filter: opacity(0.5);
+
+      /* Floating icons */
+      .tech-icon {
+        position: absolute;
+        font-size: 2rem;
+        opacity: 0.7;
+        animation: floatBubble 10s infinite ease-in-out;
+      }
+
+      @keyframes floatBubble {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+        100% {
+          transform: translateY(0) rotate(360deg);
+        }
       }
     </style>
   </head>
@@ -657,13 +736,33 @@
         <h1>Hi, I'm <span id="typed-text"></span></h1>
         <p>
           A passionate developer creating beautiful, functional websites and
-          applications.
+          applications with modern technologies.
         </p>
-        <a href="#projects" class="btn">View My Work</a>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn">View My Work</a>
+          <a href="#contact" class="btn" style="background: var(--accent);">Hire Me</a>
+        </div>
       </div>
-      <div class="hero-image fade-in">
-        <img loading="lazy" src="/myphoto-removebg-preview.png" alt="" />
+      
+      <div class="hero-image-container">
+        <div class="hero-image">
+          <img loading="lazy" src="/img-2.png" alt="Developer Portrait" />
+        </div>
+        <div class="floating-icons">
+          <i class="fab fa-html5 floating-icon" style="top: 10%; left: 5%; animation-delay: 0s;"></i>
+          <i class="fab fa-css3-alt floating-icon" style="top: 20%; left: 80%; animation-delay: 1s;"></i>
+          <i class="fab fa-js floating-icon" style="top: 70%; left: 10%; animation-delay: 2s;"></i>
+          <i class="fab fa-react floating-icon" style="top: 80%; left: 85%; animation-delay: 3s;"></i>
+          <i class="fab fa-node-js floating-icon" style="top: 40%; left: 90%; animation-delay: 4s;"></i>
+        </div>
       </div>
+      
+      <!-- Floating tech icons around the hero section -->
+      <i class="fab fa-html5 tech-icon" style="top: 20%; left: 10%; color: #E44D26; animation-delay: 0s;"></i>
+      <i class="fab fa-css3-alt tech-icon" style="top: 30%; right: 15%; color: #264DE4; animation-delay: 1s;"></i>
+      <i class="fab fa-js tech-icon" style="bottom: 25%; left: 20%; color: #F0DB4F; animation-delay: 2s;"></i>
+      <i class="fab fa-react tech-icon" style="top: 15%; right: 25%; color: #61DAFB; animation-delay: 3s;"></i>
+      <i class="fab fa-node-js tech-icon" style="bottom: 30%; right: 20%; color: #68A063; animation-delay: 4s;"></i>
     </section>
 
     <!-- About Section -->
@@ -809,7 +908,23 @@
             </div>
           </div>
         </div>
-      
+        <div class="project-card fade-in">
+          <img
+            src="https://img.freepik.com/free-photo/online-message-blog-chat-communication-envelop-graphic-icon-concept_53876-139717.jpg?uid=R194594151&ga=GA1.1.1072010052.1743692761&semt=ais_hybrid"
+            alt="Project 3" loading="lazy"
+            class="project-img"
+          />
+          <div class="project-info">
+            <h3>Social Media Dashboard</h3>
+            <p>
+              A modern dashboard for managing social media accounts with analytics.
+            </p>
+            <div class="project-links">
+              <a href="#" class="btn">Live Demo</a>
+              <a href="#" class="btn">Code</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -841,7 +956,7 @@
           </div>
         </div>
         <div class="contact-form fade-in">
-          <form>
+          <form id="contactForm">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" class="form-control" required />
@@ -866,7 +981,7 @@
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2023 My Portfolio. All rights reserved.</p>
+      <p>&copy; 2025 My Portfolio. Design by Suman</p>
     </footer>
 
     <script>
@@ -1015,9 +1130,10 @@
       // Typing Animation
       const typedTextSpan = document.getElementById("typed-text");
       const textArray = [
-        "frontend Developer",
-        "web Developer",
+        "Frontend Developer",
+        "Web Developer",
         "React Developer",
+        "MERN Stack Developer"
       ];
       const typingDelay = 200;
       const erasingDelay = 100;
@@ -1106,6 +1222,42 @@
           });
         });
       });
+
+      // Form submission
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! I will get back to you soon.');
+        this.reset();
+      });
+
+      // Create floating tech icons dynamically
+      function createTechIcons() {
+        const techIcons = [
+          { class: 'fab fa-html5', color: '#E44D26' },
+          { class: 'fab fa-css3-alt', color: '#264DE4' },
+          { class: 'fab fa-js', color: '#F0DB4F' },
+          { class: 'fab fa-react', color: '#61DAFB' },
+          { class: 'fab fa-node-js', color: '#68A063' },
+          { class: 'fab fa-git-alt', color: '#F05032' },
+          { class: 'fab fa-npm', color: '#CB3837' },
+          { class: 'fab fa-sass', color: '#CC6699' }
+        ];
+
+        const heroSection = document.querySelector('.hero');
+        
+        techIcons.forEach((icon, index) => {
+          const techIcon = document.createElement('i');
+          techIcon.className = icon.class + ' tech-icon';
+          techIcon.style.color = icon.color;
+          techIcon.style.top = Math.random() * 80 + 10 + '%';
+          techIcon.style.left = Math.random() * 80 + 10 + '%';
+          techIcon.style.animationDelay = index * 0.5 + 's';
+          heroSection.appendChild(techIcon);
+        });
+      }
+
+      // Call the function to create tech icons
+      createTechIcons();
     </script>
   </body>
 </html>
