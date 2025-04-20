@@ -746,7 +746,7 @@
       
       <div class="hero-image-container">
         <div class="hero-image">
-          <img loading="lazy" src="/img-2.png" alt="Developer Portrait" />
+          <img loading="lazy" src="/" alt="Developer Portrait" />
         </div>
         <div class="floating-icons">
           <i class="fab fa-html5 floating-icon" style="top: 10%; left: 5%; animation-delay: 0s;"></i>
@@ -885,7 +885,7 @@
               payment integration.
             </p>
             <div class="project-links">
-              <a href="/" class="btn">Live Demo</a>
+              <a href="https://my-website-08s8.onrender.com/" class="btn">Live Demo</a>
               <a href="https://github.com/Suman-web-dev/my-website" class="btn">Code</a>
             </div>
           </div>
@@ -915,12 +915,13 @@
             class="project-img"
           />
           <div class="project-info">
-            <h3>Social Media Dashboard</h3>
+            <h3>Loan Website</h3>
             <p>
-              A modern dashboard for managing social media accounts with analytics.
+              A modern and user-friendly platform for managing loans, tracking repayments, and viewing financial analytics.
             </p>
+            
             <div class="project-links">
-              <a href="#" class="btn">Live Demo</a>
+              <a href="https://loanwebsite-red.vercel.app/" class="btn">Live Demo</a>
               <a href="#" class="btn">Code</a>
             </div>
           </div>
@@ -1259,5 +1260,35 @@
       // Call the function to create tech icons
       createTechIcons();
     </script>
+    <script>
+      const contactForm = document.getElementById("contactForm");
+    
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent page reload
+    
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
+    
+        const formData = {
+          name,
+          email,
+          subject,
+          message,
+          submittedAt: new Date().toISOString()
+        };
+    
+        // Save to localStorage
+        localStorage.setItem("contactFormData", JSON.stringify(formData));
+    
+        // Optionally show a confirmation
+        alert("Your message has been saved!");
+    
+        // Optional: reset the form
+        contactForm.reset();
+      });
+    </script>
+    
   </body>
 </html>
